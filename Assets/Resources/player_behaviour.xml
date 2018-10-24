@@ -1,0 +1,35 @@
+<behaviour name="player_behaviour" version="1" agent="PlayerAgent">
+	<node class="DecoratorLoop" id="1">
+		<property loops="-1" />
+		
+		<node class="SelectorLoop" id="2">
+			<node class="WithPrecondition" id="3">
+				<node class="MethodCondition" id="4">
+					<property method="IsMove" />
+				</node>
+				<node class="MoveAction" id="5"/>
+			</node>
+			
+			<node class="WithPrecondition" id="6">
+				<node class="MethodCondition" id="7">
+					<property method="IsSpell" />
+				</node>
+				<node class="SpellAction" id="8" />
+			</node>
+			
+			<node class="WithPrecondition" id="9">
+				<node class="MethodCondition" id="10">
+					<property method="IsDead" />
+				</node>
+				<node class="DeadAction" id="11"/>
+			</node>
+			
+			<node class="WithPrecondition" id="12">
+				<node class="MethodCondition" id="13">
+					<property method="IsStand" />
+				</node>
+				<node class="StandAction" id="14"/>
+			</node>
+		</node>
+	</node>
+</behaviour>

@@ -1,0 +1,20 @@
+<behaviour name="sample" version="1">
+	<node class="Selector" id="5">
+		<node class="DecoratorLoop" id="1">
+			<property inframe="true" />
+			<property loops="3" />
+			<node class="DecoratorLog" id="2">
+				<property message="loops" />
+				<node class="Noop" id="6">
+					<property ResultStatus="Success" />
+				</node>
+			</node>
+		</node>
+		<node class="DecoratorLog" id="3">
+			<property message="hello world" />
+			<node class="Assignment" id="4">
+				<property ResultStatus="Failure" />
+			</node>
+		</node>
+	</node>
+</behaviour>

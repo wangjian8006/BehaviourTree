@@ -1,0 +1,60 @@
+<behaviour name="boss_behaviour" version="1" agent="BossAgent">
+	<node class="DecoratorLoop" id="1">
+		<property loops="-1" />
+		<node class="IfElse" id="2">
+			<node class="MethodCondition" id="3" >
+				<property method="BossIsDead" />
+			</node>
+			<node class="DeadAction" id="4" />
+			<node class="IfElse" id="5">
+				<node class="AgentValueExsists" id="6" >
+					<property agentKey="IsActivity" />
+				</node>
+				<!-- 已经激活-->
+				<node class="IfElse" id="7">
+					<node class="MethodCondition" id="8">
+						<property method="BossSpellIsCD" />
+					</node>
+					<node class="IfElse" id="9">
+						<node class="MethodCondition" id="10">
+							<property method="CanAttackDistance" />
+						</node>
+						<node class="StandAction" id="11"/>
+						<node class="BossMoveToTargetAction" id="12"/>
+					</node>
+					<node class="IfElse" id="13">
+						<node class="MethodCondition" id="14">
+							<property method="CanAttackDistance" />
+						</node>
+						<node class="BossSpellAction" id="15">
+							<property duration="1" />
+						</node>
+						<node class="BossMoveToTargetAction" id="16"/>
+					</node>
+				</node>
+				
+				<!-- 未被激活-->
+				<node class="IfElse" id="17">
+					<node class="AgentValueExsists" id="18" >
+						<property agentKey="target" />
+					</node>
+					<node class="Sequence" id="19">
+						<node class="PlayAnimationAction" id="20">
+							<property name = "stand1" />
+							<property loop = "true" />
+						</node>
+						<node class="AgentAssignment" id="21">
+							<property agentKey="IsActivity" />
+							<property agentValue="1" />
+						</node>
+					</node>
+					<node class="PlayAnimationAction" id="22">
+						<property name = "stand1" />
+						<property loop = "false" />
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</behaviour>
+
